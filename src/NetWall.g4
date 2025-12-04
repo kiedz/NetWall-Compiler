@@ -1,14 +1,13 @@
 grammar NetWall;
 
-// Regra Raiz
 prog: statement+ ;
 
-// Declarações (Statements)
+//Declarações
 statement: action PROTOCOL 'from' ip_address 'to' 'port' port_num ';' # RuleNormal
          | 'group' ID '{' statement+ '}'                              # RuleGroup
          ;
 
-// Tokens (Léxico)
+//Tokens
 action: 'allow' | 'block';
 
 PROTOCOL: 'TCP' | 'UDP';
@@ -20,5 +19,4 @@ port_num: INT;
 ID: [a-zA-Z]+;
 INT: [0-9]+;
 
-// Ignorar espaços e quebras de linha
 WS: [ \t\r\n]+ -> skip;
