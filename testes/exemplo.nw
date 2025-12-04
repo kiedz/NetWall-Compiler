@@ -1,0 +1,18 @@
+allow TCP from 192.168.0.10 to port 22;
+block TCP from 10.0.0.50 to port 22;
+
+group ServidoresWeb {
+    allow TCP from 0.0.0.0 to port 80;
+    allow TCP from 0.0.0.0 to port 443;
+}
+
+group Infraestrutura {
+    allow UDP from 8.8.8.8 to port 53;
+    block UDP from 1.1.1.1 to port 53;
+}
+
+group BancoDeDados {
+    allow TCP from 192.168.1.100 to port 5432;
+    block TCP from 192.168.1.101 to port 5432;
+    block TCP from 192.168.1.102 to port 5432;
+}
